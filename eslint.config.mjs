@@ -1,25 +1,25 @@
-import js from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import unusedImports from 'eslint-plugin-unused-imports';
-import jestPlugin from 'eslint-plugin-jest';
-import stylistic from '@stylistic/eslint-plugin';
+import js from '@eslint/js'
+import tseslint from 'typescript-eslint'
+import unusedImports from 'eslint-plugin-unused-imports'
+import jestPlugin from 'eslint-plugin-jest'
+import stylistic from '@stylistic/eslint-plugin'
 
-const eslintRecommended = js.configs.recommended;
+const eslintRecommended = js.configs.recommended
 const typescriptRecommended = [
   ...tseslint.configs.recommended,
   ...tseslint.configs.stylistic,
   stylistic.configs.customize({
     indent: 2,
     quotes: 'single',
-    semi: true,
+    semi: false,
   }),
-];
+]
 const plugins = {
   '@typescript-eslint': tseslint.plugin,
   'unused-imports': unusedImports,
   jest: jestPlugin,
   '@stylistic': stylistic,
-};
+}
 const typescriptResolver = {
   settings: {
     typescript: {
@@ -31,7 +31,7 @@ const typescriptResolver = {
       },
     },
   },
-};
+}
 const parserOptions = {
   languageOptions: {
     parser: tseslint.parser,
@@ -39,7 +39,7 @@ const parserOptions = {
       project: './tsconfig.json',
     },
   },
-};
+}
 const fileIgnores = {
   ignores: [
     '**/build/**',
@@ -50,7 +50,7 @@ const fileIgnores = {
     'package.json',
     'package-lock.json',
   ],
-};
+}
 const rules = {
   'no-unused-vars': 'off',
   'no-undef': 'off',
@@ -85,15 +85,15 @@ const rules = {
     { blankLine: 'always', prev: 'try', next: '*' },
     { blankLine: 'always', prev: '*', next: 'throw' },
   ],
-};
+}
 const jsFiles = {
   files: ['**/.js'],
   ...tseslint.configs.disableTypeChecked,
-};
+}
 const testFiles = {
   files: ['test/**'],
   rules: { 'jest/prefer-expect-assertions': 'error' },
-};
+}
 
 export default [
   eslintRecommended,
@@ -105,4 +105,4 @@ export default [
   { rules },
   jsFiles,
   testFiles,
-];
+]
