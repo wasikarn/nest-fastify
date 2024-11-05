@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common'
 import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager'
-import ms from 'ms'
 
 @Injectable()
 export class AppService {
@@ -9,7 +8,7 @@ export class AppService {
   async getHello() {
     const cacheKey = 'hello'
 
-    await this.cacheManager.set(cacheKey, 'World!', ms('5s'))
+    await this.cacheManager.set(cacheKey, 'World!', 60000)
 
     return `Hello ${await this.cacheManager.get(cacheKey)}`
   }
