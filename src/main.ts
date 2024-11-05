@@ -9,8 +9,7 @@ async function bootstrap(): Promise<void> {
   const app: NestFastifyApplication =
     await NestFactory.create<NestFastifyApplication>(
       AppModule,
-      new FastifyAdapter(),
-      { bufferLogs: true },
+      new FastifyAdapter({ logger: true }),
     )
 
   await app.listen(process.env.PORT ?? 3000)
