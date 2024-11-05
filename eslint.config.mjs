@@ -52,7 +52,7 @@ const fileIgnores = {
   ],
 };
 const rules = {
-  'no-unused-vars': 'error',
+  'no-unused-vars': 'off',
   'no-undef': 'off',
   'no-return-await': 'error',
   'unused-imports/no-unused-imports': 'error',
